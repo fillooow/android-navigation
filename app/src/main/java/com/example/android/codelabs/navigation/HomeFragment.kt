@@ -24,8 +24,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.home_fragment.*
+import androidx.navigation.navOptions
+import kotlinx.android.synthetic.main.home_fragment.view.*
 
 /**
  * Fragment used to show how to navigate to another destination
@@ -44,23 +46,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navigate_destination_button.setOnClickListener {
-            navigateTo(R.id.flow_step_one_dest)
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
         }
-
-        //TODO STEP 6 - Set NavOptions
-//        val options = navOptions {
-//            anim {
-//                enter = R.anim.slide_in_right
-//                exit = R.anim.slide_out_left
-//                popEnter = R.anim.slide_in_left
-//                popExit = R.anim.slide_out_right
-//            }
-//        }
-//        view.findViewById<Button>(R.id.navigate_destination_button)?.setOnClickListener {
-//            findNavController().navigate(R.id.flow_step_one_dest, null, options)
-//        }
-        //TODO END STEP 6
+        view.navigate_destination_button.setOnClickListener {
+            navigateTo(R.id.flow_step_one_dest, options)
+        }
 
         //TODO STEP 7.2 - Update the OnClickListener to navigate using an action
 //        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener(
@@ -73,5 +69,6 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.main_menu, menu)
     }
 
-    private fun navigateTo(@IdRes navResId: Int) = findNavController().navigate(navResId)
+    private fun navigateTo(@IdRes navResId: Int,
+                           options: NavOptions? = null) = findNavController().navigate(navResId, null, options)
 }
