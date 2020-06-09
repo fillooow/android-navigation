@@ -12,6 +12,7 @@
   ~ limitations under the License.
   -->
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FAA"
     android:id="@+id/deep_link_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
