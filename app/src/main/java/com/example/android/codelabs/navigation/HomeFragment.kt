@@ -59,9 +59,13 @@ class HomeFragment : Fragment() {
             navigateTo(R.id.flow_step_one_dest, options)
         }
 
-        view.navigate_action_button.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.next_action, null)
-        )
+        view.navigate_action_button.setOnClickListener {
+
+            val flowStepNumberArg = 1
+            // переход по названию экшона: next_action
+            val action = HomeFragmentDirections.nextAction(flowStepNumberArg)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
