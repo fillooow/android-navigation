@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import kotlinx.android.synthetic.main.home_fragment.view.*
@@ -58,11 +59,9 @@ class HomeFragment : Fragment() {
             navigateTo(R.id.flow_step_one_dest, options)
         }
 
-        //TODO STEP 7.2 - Update the OnClickListener to navigate using an action
-//        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener(
-//                Navigation.createNavigateOnClickListener(R.id.next_action, null)
-//        )
-        //TODO END STEP 7.2
+        view.navigate_action_button.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.next_action, null)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
